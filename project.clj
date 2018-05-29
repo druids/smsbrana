@@ -1,4 +1,4 @@
-(defproject smsbrana "0.0.0"
+(defproject smsbrana "0.1.0"
   :description "A connector for SMS brána https://www.smsbrana.cz"
   :url "https://github.com/druids/smsbrana"
   :license {:name "MIT License"
