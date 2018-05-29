@@ -11,7 +11,8 @@
                  [pandect "0.6.1"]]
 
   :profiles {:dev {:plugins [[lein-kibit "0.1.6"]
-                             [venantius/ultra "0.5.2"]]
+                             [venantius/ultra "0.5.2"]
+                             [jonase/eastwood "0.2.5"]]
                    :dependencies [[http-kit.fake "0.2.1"]
                                   [org.clojure/clojure "1.9.0"]]
                    :source-paths ["src" "dev/src"]}})
