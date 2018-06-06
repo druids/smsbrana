@@ -1,5 +1,5 @@
 (ns smsbrana.core
-  (:refer-clojure :exclude [send])
+  (:refer-clojure :exclude [send time])
   (:require
     [clojure.java.io :as io]
     [clojure.string :refer [join]]
@@ -26,7 +26,7 @@
   "Sends a SMS within a given options:
    :login - a login
    :password - a password
-   :text - a SMS test
+   :message - a SMS test
    :number - a phone number
 
   See other optional arguments in SMS brána documentation.
@@ -36,9 +36,12 @@
   ([{:keys [password] :as opts} host]
    (let [now (jt/local-date-time)
          salt (join (repeatedly 50 #(rand-nth char-seq)))
-         auth (md5 (join [password (jt/format "yyyyMMdd" now) "T" (jt/format "HHmmss" now) salt]))
-         response @(http/post host {:query-params (merge opts
+         time (str (jt/format "yyyyMMdd" now) "T" (jt/format "HHmmss" now))
+         auth (md5 (str password time salt))
+         response @(http/post host {:query-params (merge (dissoc opts :password)
                                                          {:auth auth
+                                                          :salt salt
+                                                          :time time
                                                           :action "send_sms"})})]
      (try
        (let [body (->> response
