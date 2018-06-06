@@ -21,7 +21,7 @@ Documentation
 
 All functions are designed to return errors instead of throwing exceptions.
 
-All API calls return a tuple within following structure: [keyword response http-response] wherekeyword can be:
+All API calls return a tuple within following structure: [keyword response http-response] where keyword can be:
 - :ok when a response is a success and parsed
 - :error when a response is parsed but it's an error response
 - :error-malformed when a response is not an expected XML structure
@@ -40,7 +40,7 @@ To be able to run examples this line is needed:
 Sends a SMS within `opts`.
 
 ```clojure
-(sms/send {:login "login", :password "password", :text "TEST", :number "+420777666555"})
+(sms/send {:login "login", :password "password", :message "TEST", :number "+420777666555"})
 ;; [:ok
 ;;  {:credit 1523.32, :price 1.1, :sms_count 1, :sms_id "377351", :err 0}
 ;;  {:request-time 386, ...
@@ -49,7 +49,7 @@ Sends a SMS within `opts`.
 Example of an error response:
 
 ```clojure
-(sms/send {:login "login", :password "password", :text "TEST", :number "+420777666555"})
+(sms/send {:login "login", :password "password", :message "TEST", :number "+420777666555"})
 ;; [:error
 ;;  {:err 4}
 ;;  {:request-time 386, ...
@@ -58,7 +58,7 @@ Example of an error response:
 Or
 
 ```clojure
-(sms/send {:login "login", :password "password", :text "TEST", :number "+420777666555"})
+(sms/send {:login "login", :password "password", :message "TEST", :number "+420777666555"})
 ;; [:error-unmarshalling
 ;;  nil
 ;;  {:request-time 386, ...
