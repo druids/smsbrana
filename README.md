@@ -12,7 +12,7 @@ Leiningen/Boot
 --------------
 
 ```clojure
-[smsbrana "0.1.0"]
+[smsbrana "0.2.0"]
 ```
 
 
